@@ -1,16 +1,151 @@
-# React + Vite
+📐 Glass Estimate Calculator (React + WordPress Plugin)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight, fast, and fully customizable glass price estimation tool built using React (Vite) and integrated into WordPress as a plugin.
+This calculator helps users estimate glass pricing based on size, wiring, transformer wattage, and glass type — and captures user details (email & mobile) for business follow-ups.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+⚛️ React frontend built with Vite
 
-## React Compiler
+🔌 Easily embeddable as a WordPress custom plugin
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🧮 Automatic glass cost estimation
 
-## Expanding the ESLint configuration
+width × height (sq. meters)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+glass price per sq/m
+
+wiring cost based on area slab
+
+transformer selection based on required watts
+
+📱 User Detail Form
+
+Mobile number
+
+Email address
+
+All data is submitted along with calculated results
+
+📤 Data submission to backend (REST API ready)
+
+📦 Clean component-based folder structure
+
+🧩 Folder Structure
+estimate-calculator/
+│
+├── src/
+│   ├── components/
+│   │   ├── Calculator.jsx
+│   │   ├── EstimateForm.jsx
+│   │   └── ResultBox.jsx
+│   │
+│   ├── hooks/
+│   │   └── useEstimate.js
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── styles.css
+│
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+
+🧮 Calculation Logic
+1. Area Calculation
+sq_m = width * height
+
+2. Transformer Requirement
+Required Watts = sq_m × 10
+Available Options = 50W, 100W, 200W, 300W, 400W
+Closest match is selected
+
+3. Wiring Cost
+Area (sq/m)	Cost
+1–5	200
+5–10	300
+10–20	400
+20–30	600
+4. Total Price
+total = (glassPrice × area) + wiring + transformerCost
+
+🛠️ Technologies Used
+
+React (Hooks-based)
+
+Vite
+
+JavaScript ES6
+
+CSS
+
+WordPress Plugin Integration Ready
+
+REST API submission capable
+
+⚙️ How It Works
+
+User enters:
+
+Width
+
+Height
+
+Glass price per sq/m
+
+Email
+
+Mobile number
+
+On clicking Get Estimate:
+
+All fields are validated
+
+Calculation is executed
+
+Final estimate is generated
+
+Result is displayed
+
+All data is ready to be sent to backend (WordPress REST API)
+
+Admin receives:
+
+User details (mobile & email)
+
+Full calculation summary
+
+Helpful for automated leads and sales decisions
+
+📦 Installation (React Dev Environment)
+npm install
+npm run dev
+
+
+To build for WordPress:
+
+npm run build
+
+
+Copy the build folder into your WordPress plugin.
+
+🔌 WordPress Integration
+
+This project is designed to be embedded inside a WordPress plugin using:
+
+a shortcode to load the built React bundle
+
+REST API route to handle email submission
+
+If you need the WordPress plugin setup, ask:
+"Build the WordPress plugin"
+
+🤝 Contributing
+
+Pull requests and improvements are welcome!
+If you want to add features, open an issue first to discuss ideas.
+
+📞 Contact
+
+For questions or collaboration opportunities, feel free to open an issue or contact the project maintainer.
