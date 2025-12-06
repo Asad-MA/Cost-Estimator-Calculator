@@ -31,27 +31,6 @@ All data is submitted along with calculated results
 
 📦 Clean component-based folder structure
 
-🧩 Folder Structure
-estimate-calculator/
-│
-├── src/
-│   ├── components/
-│   │   ├── Calculator.jsx
-│   │   ├── EstimateForm.jsx
-│   │   └── ResultBox.jsx
-│   │
-│   ├── hooks/
-│   │   └── useEstimate.js
-│   │
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── styles.css
-│
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
-
 🧮 Calculation Logic
 1. Area Calculation
 sq_m = width * height
