@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Calculator from "./components/Calculator";
+import EstimateForm from "./components/EstimateForm";
+import ResultBox from "./components/ResultBox";
+import useEstimate from "./hooks/useEstimate";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [calculatorData, setCalculatorData] = useState({
+    width: "",
+    height: "",
+    glassPrice: 1200,
+  });
+
+  const [finalData, setFinalData] = useState(null);
+
+  const estimate = useEstimate(
+    parseFloat(calculatorData.width),
+    parseFloat(calculatorData.height),
+    parseFloat(calculatorData.glassPrice)
+  );
+
+  const handleFormSubmit = async (userInfo) => {
+    const data = {
+      ...userInfo,
+      ...calculatorData,
+      ...estimate,
+    };
+
+    setFinalData(data);
+
+    // Your WordPress endpoint call here
+    console.log("Submitted to backend:", data);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="container">
+      <Calculator onChange={setCalculatorData} />
+      <EstimateForm onSubmit={handleFormSubmit} />
+      <ResultBox data={finalData} />
+    </div>
+  );
 }
-
-export default App
