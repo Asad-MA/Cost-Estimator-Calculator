@@ -18,10 +18,12 @@ export default function EstimateForm({ onSubmit }) {
   };
 
   return (
-    <form className="box" onSubmit={handleSubmit}>
-      <h2>Your Details</h2>
+    <div className="form-section rounded-20 px-20 py-30">
+    <form className="box d-flex direction-column" onSubmit={handleSubmit}>
+    
 
       {error && <p style={{ color: "red" }}>{error}</p>}
+
 
       <label>Email Address</label>
       <input
@@ -43,5 +45,6 @@ export default function EstimateForm({ onSubmit }) {
 
       <button type="submit">Get Estimate</button>
     </form>
+    </div>
   );
 }

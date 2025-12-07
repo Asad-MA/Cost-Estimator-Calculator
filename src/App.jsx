@@ -33,10 +33,19 @@ export default function App() {
   };
 
   return (
-    <div className="container">
-      <Calculator onChange={setCalculatorData} />
-      <EstimateForm onSubmit={handleFormSubmit} />
-      <ResultBox data={finalData} />
+    <div className="app-container">
+      <div className="calculator-box gap-40">
+        <div className="calculator-container flex-grow">
+          <Calculator onChange={setCalculatorData} />
+        </div>
+        <div className="estimate-form-container flex-grow d-flex direction-column">
+          <EstimateForm onSubmit={handleFormSubmit} />
+        </div>
+      </div>
+
+      <div className="result-box-container">
+        <ResultBox data={finalData} />
+      </div>
     </div>
   );
 }

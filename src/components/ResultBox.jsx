@@ -3,7 +3,7 @@ export default function ResultBox({ data }) {
 
   return (
     <div className="box">
-      <h2>Estimate Summary</h2>
+      <h2>Total Summary</h2>
 
       <p>Area: {data.area.toFixed(2)} sq/m</p>
       <p>Glass Price: Rs {data.glassPrice}</p>
