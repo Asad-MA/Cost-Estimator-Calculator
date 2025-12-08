@@ -35,10 +35,10 @@ export default function App() {
   return (
     <div className="app-container">
       <div className="calculator-box gap-40">
-        <div className="calculator-container flex-grow">
+        <div className="calculator-container flex-grow w-50">
           <Calculator onChange={setCalculatorData} />
         </div>
-        <div className="estimate-form-container flex-grow d-flex direction-column">
+        <div className="estimate-form-container flex-grow d-flex direction-column w-50">
           
           <EstimateForm onSubmit={handleFormSubmit} totalPrice={estimate.totalPrice} />
 
