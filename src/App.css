@@ -115,3 +115,15 @@ select.cal-select {
 .flex-grow{
     flex-grow: 1;
 }
+.form-field{
+  min-height: 50px;
+    margin-top: 10px;
+    border-radius: 10px;
+    text-indent: 10px;
+    background: #cfe4f2;
+    border: 1px solid blue
+}
+
+.align-center{
+  align-items: center;
+}

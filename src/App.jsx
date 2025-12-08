@@ -39,7 +39,9 @@ export default function App() {
           <Calculator onChange={setCalculatorData} />
         </div>
         <div className="estimate-form-container flex-grow d-flex direction-column">
-          <EstimateForm onSubmit={handleFormSubmit} />
+          
+          <EstimateForm onSubmit={handleFormSubmit} totalPrice={estimate.totalPrice} />
+
         </div>
       </div>
 
