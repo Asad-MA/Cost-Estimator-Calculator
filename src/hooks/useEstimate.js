@@ -1,40 +1,37 @@
 import { useState, useEffect } from "react";
+import settings from "../config/settings";
 
-export default function useEstimate(width, height, glassTypePrice) {
-  const [area, setArea] = useState(0);
-  const [wiringCost, setWiringCost] = useState(0);
-  const [transformer, setTransformer] = useState(0);
+export default function useEstimate(width, height, glassType) {
+  // const [area, setArea] = useState(0);
+  // const [wiringCost, setWiringCost] = useState(0);
+  // const [transformer, setTransformer] = useState(0);
   const [total, setTotal] = useState(0);
 
-  useEffect(() => {
-    if (!width || !height) return;
+  if (!width || !height || !glassType) return {};
 
-    const sqMeter = width * height;
-    setArea(sqMeter);
+  // 1. AREA (sq meter)
+  const area = width * height;
 
-    // Wiring cost slabs
-    setWiringCost(25 * sqMeter); // Example: Rs. 25 per sqm
+  // 2. Glass Price (dynamic from settings file)
+  const glassPrice = settings.glassTypes[glassType] || 0;
 
-    // Transformer calculation (10 watts per sqm)
-    const watts = sqMeter * 10;
+  const glassCost = area * glassPrice;
 
-    if (watts <= 30) setTransformer(30);
-    else if (watts <= 50) setTransformer(50);
-    else if (watts <= 100) setTransformer(100);
-    else if (watts <= 200) setTransformer(200);
-    else if (watts <= 300) setTransformer(300);
-    else setTransformer(400);
+  // 3. Required watts for transformer
+  const requiredWatts = area * settings.transformerRules.wattsPerSqMeter;
 
-  }, [width, height]);
+  // 4. Select the nearest transformer that can handle required watts
+  const transformer =
+    settings.transformers.find((t) => t.watt >= requiredWatts) ||
+    settings.transformers[settings.transformers.length - 1];
 
-  useEffect(() => {
-    if (!area) return;
+  const transformerCost = transformer.price;
 
-    const glassCost = area * glassTypePrice;
-    const transformerCost = transformer * 10; // Example: Rs. 10 per watt
+  // 5. Wiring cost: simple cost per sq meter
+  const wiringCost = area * settings.wiringRules.wattsPerSqMeter;
 
-    setTotal(glassCost + wiringCost + transformerCost);
-  }, [area, wiringCost, transformer]);
+  // 6. Total
+  const totalPrice = glassCost + transformerCost + wiringCost;
 
-  return { area, wiringCost, transformer, total };
+  return { area, glassCost, glassPrice, wiringCost, transformer, totalPrice };
 }
