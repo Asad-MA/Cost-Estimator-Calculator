@@ -132,6 +132,10 @@ select.cal-select {
     padding: 8px
 }
 
+.mt-10{
+  margin-top: 10px;
+  }
+
 .align-center{
   align-items: center;
 }

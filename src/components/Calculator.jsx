@@ -74,8 +74,8 @@ export default function Calculator({ onChange, finalData }) {
           <span style={{ left: `${width}%` }} className="range-value">
             {width || 1} m
           </span>
-          <div className="d-flex w-100 justify-between">
-            <span>{widthField.min}</span> <span>{heightField.max}</span>
+          <div className="d-flex w-100 justify-between mt-10">
+            <small>{widthField.min}m</small> <small>{widthField.max}m</small>
           </div>
         </div>
       </div>
@@ -104,8 +104,8 @@ export default function Calculator({ onChange, finalData }) {
           <span style={{ left: `${height || 1}%` }} className="range-value">
             {height || 1} m
           </span>
-          <div className="d-flex w-100 justify-between">
-            <span>{heightField.min}</span> <span>{heightField.max}</span>
+          <div className="d-flex w-100 justify-between mt-10">
+            <small>{heightField.min}m</small> <small>{heightField.max}m</small>
           </div>
         </div>
       </div>
