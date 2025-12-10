@@ -6,8 +6,8 @@ import useEstimate from "./hooks/useEstimate";
 
 export default function App() {
   const [calculatorData, setCalculatorData] = useState({
-    width: "",
-    height: "",
+    width: 1,
+    height: 1,
     glassPrice: 1200,
   });
 
@@ -36,7 +36,7 @@ export default function App() {
     <div className="app-container">
       <div className="calculator-box gap-40">
         <div className="calculator-container flex-grow w-50">
-          <Calculator onChange={setCalculatorData} />
+          <Calculator onChange={setCalculatorData} finalData={finalData}/>
         </div>
         <div className="estimate-form-container flex-grow d-flex direction-column w-50">
           
@@ -46,7 +46,7 @@ export default function App() {
       </div>
 
       <div className="result-box-container">
-        <ResultBox data={finalData} />
+        
       </div>
     </div>
   );

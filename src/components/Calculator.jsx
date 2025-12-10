@@ -1,7 +1,8 @@
 import { useState } from "react";
 import settings from "../config/settings.js";
+import ResultBox from "./ResultBox.jsx";
 
-export default function Calculator({ onChange }) {
+export default function Calculator({ onChange, finalData }) {
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [glassPrice, setGlassPrice] = useState("");
@@ -12,11 +13,13 @@ export default function Calculator({ onChange }) {
 
   const update = (field, value) => {
     const data = {
-      width,
-      height,
-      glassPrice,
-      [field]: value,
+      width: field === "width" ? parseFloat(value) : parseFloat(width),
+      height: field === "height" ? parseFloat(value) : parseFloat(height),
+      glassPrice:
+        field === "glassPrice" ? parseFloat(value) : parseFloat(glassPrice),
     };
+
+    console.log("Chnaged Data:", data);
 
     onChange(data);
   };
@@ -30,12 +33,12 @@ export default function Calculator({ onChange }) {
         <select
           className="cal-select w-100"
           onChange={(e) => {
-            setGlassPrice(e.target.value);
-            console.log(e.target.value);
-            update("glassPrice", e.target.value);
+            const value = e.target.value;
+            setGlassPrice(value);
+            update("glassPrice", value);
           }}
         >
-          <option disabled selected>
+          <option disabled defaultValue={""}>
             Select Glass Type
           </option>
 
@@ -49,7 +52,10 @@ export default function Calculator({ onChange }) {
 
       <div className="field-wrap mb-20">
         <label className="d-block cal-label">
-          Width <span className="sub-label">Min: {widthField.min} - Max: {widthField.max} (m)</span>
+          Width{" "}
+          <span className="sub-label">
+            Min: {widthField.min} - Max: {widthField.max} (m)
+          </span>
         </label>
         <div className="range-wrap pos-relative">
           <input
@@ -75,7 +81,10 @@ export default function Calculator({ onChange }) {
 
       <div className="field-wrap mb-20">
         <label className="d-block cal-label">
-          Height <span className="sub-label">Min: {heightField.min} - Max: {heightField.max} (m)</span>
+          Height{" "}
+          <span className="sub-label">
+            Min: {heightField.min} - Max: {heightField.max} (m)
+          </span>
         </label>
         <div className="min-max-wrap"></div>
         <div className="range-wrap pos-relative">
@@ -99,31 +108,9 @@ export default function Calculator({ onChange }) {
           </div>
         </div>
       </div>
-      <div className="field-wrap">
+      <div className="field-wrapb">
         <label className="d-block cal-label">Total Summary</label>
-        <div className="d-flex gap-10">
-          <div className="form-field w-33">
-            <div className="inner-label">Glass Price</div>
-            <div className="d-flex align-center inner-field">
-              <span className="currency">AED</span>
-              <span className="Total-Price">123</span>
-            </div>
-          </div>
-          <div className="form-field w-33">
-            <div className="inner-label">Transformer Price</div>
-            <div className="d-flex align-center inner-field">
-              <span className="currency">AED</span>
-              <span className="Total-Price">123</span>
-            </div>
-          </div>
-          <div className="form-field w-33">
-            <div className="inner-label">Wiring Price</div>
-            <div className="d-flex align-center inner-field">
-              <span className="currency">AED</span>
-              <span className="Total-Price">123</span>
-            </div>
-          </div>
-        </div>
+        <ResultBox data={finalData} />
       </div>
     </div>
   );

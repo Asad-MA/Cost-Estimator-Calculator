@@ -1,16 +1,15 @@
 export default function ResultBox({ data }) {
   if (!data) return null;
-console.log(data);
   return (
     <div className="box">
-      <h2>Total Summary</h2>
 
-      <p>Area: {data.area.toFixed(2)} sq/m</p>
-      <p>Glass Price: Rs {data.glassPrice}</p>
-      <p>Wiring Cost: Rs {data.wiringCost}</p>
-      <p>Transformer: {data.transformer.watt} watts</p>
-      <p>Transformer Price: {data.transformer.price} AED</p>
-      <p>Total Cost: <strong>Rs {data.total}</strong></p>
+      <p><b>Area:</b> {data.area.toFixed(2)} <small>(sq/m)</small></p>
+      <p><b>Glass Price:</b> <small><b>AED</b></small> {data.glassPrice} <small>(per square meter)</small></p>
+      <p><b>Glass Cost: </b><small><b>AED</b></small> {data.glassCost}<small>(For {data.area.toFixed(2)} sq/m)</small></p>
+      <p><b>Wiring Cost:</b> <small><b>AED</b></small> {data.wiringCost}</p>
+      <p><b>Transformer Required</b> {data.transformer.watt} <small>watts</small></p>
+      <p><b>Transformer Price:</b> <small><b>AED</b></small> {data.transformer.price}</p>
+      <p><b>Total Cost: </b><strong><small><b>AED</b></small> {data.totalPrice}</strong></p>
     </div>
   );
 }

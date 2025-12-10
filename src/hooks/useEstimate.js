@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
 import settings from "../config/settings";
 
-export default function useEstimate(width, height, glassType) {
+export default function useEstimate(width, height, glassPrice) {
   // const [area, setArea] = useState(0);
   // const [wiringCost, setWiringCost] = useState(0);
   // const [transformer, setTransformer] = useState(0);
   const [total, setTotal] = useState(0);
 
-  if (!width || !height || !glassType) return {};
+  if (!width || !height || !glassPrice) return {};
 
   // 1. AREA (sq meter)
   const area = width * height;
 
-  // 2. Glass Price (dynamic from settings file)
-  const glassPrice = settings.glassTypes[glassType] || 0;
+  console.log("Glass Price [useEstimate]:" , glassPrice);
 
   const glassCost = area * glassPrice;
 

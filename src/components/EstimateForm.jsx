@@ -44,13 +44,13 @@ export default function EstimateForm({ onSubmit, totalPrice }) {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="your@gmail.com"
+            placeholder="Type Your Email"
           />
         </div>
 
         <div className="field-wrap mb-20">
           <label className="d-block cal-label">Total Price</label>
-          <div className="w-100 form-field d-flex align-center" readonly>
+          <div className="w-100 form-field d-flex align-center" >
             <span className="currency">AED</span>
             <span className="Total-Price">
               {" "}
