@@ -61,17 +61,18 @@ export default function Calculator({ onChange, finalData }) {
           <input
             className="w-100 styled-range"
             type="range"
+            required
             step={widthField.steps}
             min={widthField.min}
             max={widthField.max}
-            value={width}
+            value={width || 1}
             onChange={(e) => {
               setWidth(e.target.value);
               update("width", e.target.value);
             }}
           />
           <span style={{ left: `${width}%` }} className="range-value">
-            {width} m
+            {width || 1} m
           </span>
           <div className="d-flex w-100 justify-between">
             <span>{widthField.min}</span> <span>{heightField.max}</span>
@@ -94,14 +95,14 @@ export default function Calculator({ onChange, finalData }) {
             min={heightField.min}
             max={heightField.max}
             type="range"
-            value={height}
+            value={height || 1}
             onChange={(e) => {
               setHeight(e.target.value);
               update("height", e.target.value);
             }}
           />
-          <span style={{ left: `${height}%` }} className="range-value">
-            {height} m
+          <span style={{ left: `${height || 1}%` }} className="range-value">
+            {height || 1} m
           </span>
           <div className="d-flex w-100 justify-between">
             <span>{heightField.min}</span> <span>{heightField.max}</span>
