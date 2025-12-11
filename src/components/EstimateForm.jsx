@@ -2,7 +2,7 @@ import { useState } from "react";
 
 
 export default function EstimateForm({ onSubmit, totalPrice }) {
-  const [mobile, setMobile] = useState("");
+  const [totalCost, setTotalCost] = useState(0);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -14,6 +14,8 @@ export default function EstimateForm({ onSubmit, totalPrice }) {
       setError("Please fill all required fields.");
       return;
     }
+
+    setTotalCost(totalPrice);
 
     setError("");
     onSubmit({ name, email, totalPrice });
@@ -54,7 +56,7 @@ export default function EstimateForm({ onSubmit, totalPrice }) {
             <span className="currency">AED</span>
             <span className="Total-Price">
               {" "}
-              {totalPrice ? totalPrice.toFixed(2) : "00.00"}
+              {totalCost}
             </span>
           </div>
         </div>

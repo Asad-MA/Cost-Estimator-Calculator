@@ -12,16 +12,12 @@ export default function Calculator({ onChange, finalData }) {
   const heightField = settings.fields.height;
 
   const update = (field, value) => {
-    const data = {
-      width: field === "width" ? parseFloat(value) : parseFloat(width),
-      height: field === "height" ? parseFloat(value) : parseFloat(height),
-      glassPrice:
-        field === "glassPrice" ? parseFloat(value) : parseFloat(glassPrice),
-    };
+    const parsed = parseFloat(value);
+    if (!Number.isFinite(parsed)) return;
 
-    console.log("Chnaged Data:", data);
-
-    onChange(data);
+    // Send only the changed field as a numeric value to avoid
+    // overwriting other fields with NaN when they are still empty.
+    onChange({ [field]: parsed });
   };
 
   return (

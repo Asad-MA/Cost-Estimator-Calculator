@@ -20,6 +20,7 @@ export default function App() {
   );
 
   const handleFormSubmit = async (userInfo) => {
+    console.log("Estimate Data:" , estimate);
     const data = {
       ...userInfo,
       ...calculatorData,
@@ -36,7 +37,12 @@ export default function App() {
     <div className="app-container">
       <div className="calculator-box gap-40">
         <div className="calculator-container flex-grow w-50">
-          <Calculator onChange={setCalculatorData} finalData={finalData}/>
+          <Calculator
+            onChange={(update) =>
+              setCalculatorData((prev) => ({ ...prev, ...update }))
+            }
+            finalData={finalData}
+          />
         </div>
         <div className="estimate-form-container flex-grow d-flex direction-column w-50">
           
@@ -46,7 +52,7 @@ export default function App() {
       </div>
 
       <div className="result-box-container">
-        
+        {/* <ResultBox data={finalData} /> */}
       </div>
     </div>
   );

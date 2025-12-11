@@ -12,8 +12,9 @@ body {
 
 .calculator-box {
     display: flex;
-    max-width: 900px;
+    max-width: 1100px;
     margin: auto;
+    align-items: flex-start;
 }
 
 .range-value {
@@ -168,6 +169,37 @@ select.cal-select {
 
 .w-33 {
   width: 33.33%;
+}
+
+/* .summary-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 10px;
+} */
+
+span.item-value {
+    background: rgb(207 228 242);
+    border-radius: 5px;
+    padding: 4px 10px;
+}
+
+b.item-key {
+    margin-right: 10px;
+}
+
+.summary-grid{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.summary-item {
+    min-height: 45px;
+    padding: 12px 15px;
+    border: 1px solid #1a7fc3;
+    background: #bad9ed;
+    border-radius: 10px;
+    flex-grow: 1;
+    margin: 0 8px 5px 0;
 }
 
 /* Default Override */
