@@ -39,7 +39,7 @@ export default function App() {
     width: 1,
     height: 1,
     glassPrice: 1200,
-    glassType: "",
+    glassType: ".",
   });
 
   const [finalData, setFinalData] = useState(null);
