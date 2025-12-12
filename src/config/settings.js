@@ -2,6 +2,7 @@ const settings = {
   fields: {
     width: { min: 1, max: 100, steps: 1 },
     height: { min: 1, max: 100, steps: 1 },
+    thickness: { min: 6, max: 19, steps: 1 },
   },
   glassTypes: {
     "Laminated Smart glass Smart Glass": 1200,

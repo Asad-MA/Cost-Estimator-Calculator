@@ -6,18 +6,19 @@ export default function Calculator({ onChange, finalData }) {
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [glassPrice, setGlassPrice] = useState("");
+  const [glassType, setGlassType] = useState("");
   const [error, setError] = useState("");
 
   const widthField = settings.fields.width;
   const heightField = settings.fields.height;
 
   const update = (field, value) => {
-    const parsed = parseFloat(value);
-    if (!Number.isFinite(parsed)) return;
+    // const parsed = parseFloat(value);
+    // if (!Number.isFinite(parsed)) return;
 
     // Send only the changed field as a numeric value to avoid
     // overwriting other fields with NaN when they are still empty.
-    onChange({ [field]: parsed });
+    onChange({ [field]: value });
   };
 
   return (
@@ -29,8 +30,13 @@ export default function Calculator({ onChange, finalData }) {
         <select
           className="cal-select w-100"
           onChange={(e) => {
-            const value = e.target.value;
+            
+            const key = e.target.value;
+            const value = settings.glassTypes[key];
+            console.log(`${key} selected with price ${value}`);
+            setGlassType(key);
             setGlassPrice(value);
+            update("glassType", key);
             update("glassPrice", value);
           }}
         >
@@ -39,7 +45,7 @@ export default function Calculator({ onChange, finalData }) {
           </option>
 
           {Object.keys(settings.glassTypes).map((glassType) => (
-            <option key={glassType} value={settings.glassTypes[glassType]}>
+            <option key={glassType} value={glassType}>
               {glassType}
             </option>
           ))}
@@ -64,7 +70,7 @@ export default function Calculator({ onChange, finalData }) {
             value={width || 1}
             onChange={(e) => {
               setWidth(e.target.value);
-              update("width", e.target.value);
+              update("width", parseFloat(e.target.value));
             }}
           />
           <span style={{ left: `${width}%` }} className="range-value">
@@ -94,7 +100,7 @@ export default function Calculator({ onChange, finalData }) {
             value={height || 1}
             onChange={(e) => {
               setHeight(e.target.value);
-              update("height", e.target.value);
+              update("height", parseFloat(e.target.value));
             }}
           />
           <span style={{ left: `${height || 1}%` }} className="range-value">

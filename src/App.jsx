@@ -4,11 +4,42 @@ import EstimateForm from "./components/EstimateForm";
 import ResultBox from "./components/ResultBox";
 import useEstimate from "./hooks/useEstimate";
 
+
+async function testMail(info) {
+  const res = await fetch("https://ifsmartglass.com/wp-json/estimator/v1/send", {
+    method: "POST",
+    headers: {
+    'Content-Type': 'application/json',
+    'X-WP-Nonce': EC_API.nonce,
+    },
+    body: JSON.stringify({
+      name: info.name,
+      email:info.email,
+      mobile:info.phone,
+      width:info.width,
+      height:info.height,
+      glassPrice:info.glassPrice,
+      glassCost:info.glassCost,
+      totalPrice:info.totalPrice,
+      transformer:info.transformer.watt,
+      transformerCost:info.transformer.price,
+      wiringCost:info.wiringCost,
+      area:info.area,
+      glassType:info.glassType || "Standard",
+    })
+  });
+
+  const data = await res.json();
+  console.log("Response:", data);
+}
+
+
 export default function App() {
   const [calculatorData, setCalculatorData] = useState({
     width: 1,
     height: 1,
     glassPrice: 1200,
+    glassType: "",
   });
 
   const [finalData, setFinalData] = useState(null);
@@ -31,6 +62,7 @@ export default function App() {
 
     // Your WordPress endpoint call here
     console.log("Submitted to backend:", data);
+    await testMail(data);
   };
 
   return (
